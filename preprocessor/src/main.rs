@@ -64,7 +64,7 @@ pub fn read_nonstandard_obj(
                 if vals.len() < 3 {
                     anyhow::bail!("Not enough data in face {content}");
                 }
-                indices.push([vals[0]-1, vals[1]-1, vals[2]-1]);
+                indices.push([vals[0] - 1, vals[1] - 1, vals[2] - 1]);
             }
             Some((ty, _)) => {
                 println!("Ignored attrib {ty}");
@@ -105,14 +105,51 @@ pub fn read_nonstandard_obj(
 }
 
 pub fn normalize(min: f32, max: f32, val: f32) -> u16 {
-    let norm = (val.clamp(min, max) - min) / (max-min);
+    let norm = (val.clamp(min, max) - min) / (max - min);
     (norm * (u16::MAX as f32)) as u16
 }
 
+type PackedU9 = tinyvec::ArrayVec<[u8; 2]>;
+/// Pack u9 int into at most two bytes. If first != 255, it represents the whole value, zero extended.
+/// if it is = 255, there is a second byte in the stream, and the value is that byte plus 255.
+/// An inefficient encoding scheme in general, but in this application (where max <= 510),
+/// it's considerably smaller than other variable-length encodings!
+pub fn pack_u9(val: u16) -> Option<PackedU9> {
+    if val >= 512 {
+        // Exceeds u15
+        None
+    } else if val < 255 {
+        // Fits in one byte
+        Some(tinyvec::array_vec![val as u8])
+    } else {
+        // Takes up two bytes - add marker flag and second byte
+        let low = 255u8;
+        let high = (val - 255) as u8;
+        Some(tinyvec::array_vec![low, high])
+    }
+}
+pub fn pack_u9_slice(values: &[u16]) -> Option<Vec<u8>> {
+    // Pessimistic pre-alloc
+    let mut v = Vec::with_capacity(values.len() * 2);
+
+    for &val in values {
+        v.extend(pack_u9(val)?);
+    }
+    Some(v)
+}
+
+struct Submesh {
+    color: [u8; 4],
+    vertices: &'static [u16],
+}
+
 pub fn main() -> anyhow::Result<()> {
-    let (verts, indices) = read_nonstandard_obj(&mut std::io::BufReader::new(
-        std::fs::File::open("/home/aspen/Documents/Blender Projects/baa mesh/baa.obj")?,
+    let (verts, indices) = read_nonstandard_obj(&mut std::io::Cursor::new(
+        include_bytes!("../mesh/baa.obj"),
     ))?;
+    if verts.len() >= 512 {
+        anyhow::bail!("Too many verts to pack!")
+    }
 
     print!("const VERTICES : &'static [NormVertex] = &[");
     for v in verts.iter() {
@@ -126,6 +163,7 @@ pub fn main() -> anyhow::Result<()> {
     println!("\n// ====================================\n");
 
     print!("const EDGES : &'static [[u16; 2]] = &[");
+    let mut edges = Vec::new();
     let mut used_edges = std::collections::HashSet::<OrderlessPair<u16>>::new();
     for &[a, b, c] in indices.iter() {
         [
@@ -137,6 +175,7 @@ pub fn main() -> anyhow::Result<()> {
         .for_each(|pair| {
             if !used_edges.contains(&pair) {
                 //New pair found!
+                edges.push([pair.0, pair.1]);
                 print!("[{}, {}],", pair.0, pair.1);
                 used_edges.insert(pair);
             }
@@ -152,12 +191,21 @@ pub fn main() -> anyhow::Result<()> {
     }
     println!("];");
 
-
     let mut size = 0usize;
     size += verts.len() * std::mem::size_of::<NormVertex>();
     size += used_edges.len() * std::mem::size_of::<u16>() * 2;
     size += indices.len() * std::mem::size_of::<u16>() * 3;
-    println!("// Processed size: {size} Bytes");
+    println!(
+        r"// Processed size: {size} Bytes
+// Num verts: {}",
+        verts.len(),
+    );
+
+    println!("Raw indices size: {}", edges.len() * 4);
+    println!(
+        "Packed indices size: {}",
+        pack_u9_slice(bytemuck::cast_slice(&edges)).unwrap().len()
+    );
 
     Ok(())
 }

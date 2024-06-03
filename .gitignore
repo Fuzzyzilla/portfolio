@@ -1,7 +1,6 @@
-/target
+vector-sheepy/target
+preprocessor/target
+target
 **/*.rs.bk
-Cargo.lock
-bin/
 pkg/
 wasm-pack.log
-preprocessor/target

@@ -7,4 +7,6 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.75"
+bytemuck = "1.13.1"
 obj-rs = "0.7.1"
+tinyvec = "1.6.0"
