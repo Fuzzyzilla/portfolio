@@ -1,0 +1,338 @@
+html {
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(218, 224, 243);
+    --title-color: black;
+    --title-shadow-color: white;
+    --body-text-color: black;
+    --bar-text-color: white;
+    --bar-bg: rgba(0.0, 0.0, 0.0, 0.8);
+    --bar-shadow: black;
+    --bar-highlight: rgba(0.0, 0.0, 0.0, 1.0);
+    --bg-color: rgb(149, 175, 185);
+    --alt-color-1: rgb(161, 190, 218);
+    --alt-color-2: rgb(175, 205, 219);
+    /* must match the behavior of img/border.svg */
+    --footer-color: rgb(114, 147, 180);
+    --footer-font-color: black;
+    --footer-shadow: #ffffff80;
+}
+#bigheader::before {
+    content :"";
+    display: block;
+    position :fixed;
+    z-index: -1;
+    left: 0;
+    right:0;
+    top:0;
+    bottom:-10vh;
+    background-image: url("/img/gggrain.svg");
+    image-rendering: pixelated;
+    background-repeat: repeat;
+    background-position: center;
+    mix-blend-mode: overlay;
+    /* lowered for dark mode */
+    opacity: 0.4;
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: rgb(19, 24, 32);
+        /* override colors! */
+        --title-color: white;
+        --title-shadow-color: black;
+        --body-text-color: white;
+        --bar-text-color: rgb(255, 255, 255);
+        --bar-bg: rgba(43, 52, 71, 0.9);
+        --bar-shadow: rgb(9, 5, 48);
+        --bar-highlight: rgb(18, 19, 31);
+        --bg-color: rgb(48, 54, 63);
+        --alt-color-1: rgb(16, 17, 34);
+        --alt-color-2: rgb(18, 15, 27);
+        /* must match the behavior of img/border.svg */
+        --footer-color: rgb(10, 9, 14);
+        --footer-font-color: white;
+        --footer-shadow: #00000080;
+    }
+    body::before {
+        opacity: 0.3;
+    }
+}
+#bigheader {
+    /* full screen, minus padding, minus nav */
+    height: 90vh;
+    width: 90vw;
+    padding: 5vw;
+    overflow:hidden;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: left;
+    color: var(--title-color);
+}
+#bigwords .pronouns {
+    font-style: italic;
+    font-weight: lighter;
+    font-size: 0.5em;
+}
+#bigwords {
+    flex-grow: 0;
+    flex-shrink: 0.5;
+}
+#bigwords * {
+    margin : 5px;
+    font-size: 2em;
+    text-shadow: 0px 0px 2px var(--title-shadow-color), 0px 0px 10px var(--title-shadow-color);
+}
+#bigwords .scriptless {
+    font-size: medium;
+}
+#bigheader h1 {
+    font-size: 5em;
+}
+#sheep_container {
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: -1;
+    left:0;
+    bottom:0;
+    flex-grow: 1.0;
+    height: 512px;
+}
+#dynba {
+    float: right;
+    position:relative;
+    aspect-ratio: 1;
+    height: 100%;
+}
+#dynba * {
+    position: absolute;
+    /* i give up trying to make this look good on
+    narrow vertical displays -w-
+    Reduce this spacing on landscape displays.*/
+    right:-128px;
+    top:0;
+    width: 512px;
+    height: 512px;
+    /*make sure the user can't drag fallback
+    svg while playing with animation*/
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+#dynba *.hidden {
+    display: none;
+    opacity: 0;
+}
+nav {
+    color: var(--bar-text-color);
+    position: -webkit-sticky;
+    position: sticky;
+    font-size: 1rem;
+    top: 0;
+    bottom:0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-wrap: wrap;
+    background-color: var(--bar-bg);
+    text-shadow: 0px 0px 15px var(--bar-shadow);
+}
+
+/* === Header top-bottom if portrait, left right on landscape ===*/
+@media screen and (orientation: landscape) {
+    #bigheader {
+        flex-wrap: wrap;
+        align-items: center;
+        flex-direction: row;
+    }
+    nav {
+        padding: 0 10vw 0 0;
+    }
+    #dynba * {
+        right:0;
+    }
+}
+#navname {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+}
+nav a, nav div {
+    color: var(--bar-text-color);
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 1vh;
+    display: flex;
+    align-items: center;
+}
+nav a span {
+    width: 100%;
+    text-align: center;
+}
+nav a:hover {
+    text-decoration-style: dashed;
+    background-color: var(--bar-highlight);
+}
+nav .baa {
+    height: 2em;
+}
+main {
+    background-color: var(--bg-color);
+    color: var(--body-text-color);
+    display: flex;
+    flex-direction: column;
+    padding: 2vmin;
+    /* room for footer border */
+    padding-bottom: 50px;
+    overflow: hidden;
+    line-height: 150%;
+}
+h2, h3 {
+    margin-top: 0;
+    width: 100%;
+    text-align: left;
+    padding-bottom: 0.5em;
+    border-bottom: 1px dashed var(--body-text-color);
+}
+main > section {
+    scroll-padding-top: 10vh;
+    scroll-margin-top: 10vh;
+}
+section >section:nth-of-type(odd) {
+    background-color: var(--alt-color-2);
+}
+section >section:nth-of-type(even) {
+    background-color: var(--alt-color-1);
+}
+.cardsection > .card {
+    margin: 10px;
+    padding: 1vmin;
+    height: fit-content;
+    border-radius: 10px;
+    box-shadow:
+        inset -5px -5px rgba(0.0, 0.0, 0.0, 0.5),
+        5px 5px rgba(0.0, 0.0, 0.0, 0.5);
+}
+time {
+    font-weight: lighter;
+    font-size: smaller;
+    font-style: italic;
+}
+time::before {
+    content:" — ";
+}
+main a {
+    color: var(--body-text-color);
+}
+main a:hover {
+    color: var(--body-text-color);
+    text-decoration-style: dashed;
+}
+.card:nth-of-type(4n+1) .project-link, .card:nth-of-type(4n+0) .project-link{
+    float: right;
+}
+.card:nth-of-type(4n+2) .project-link, .card:nth-of-type(4n+3) .project-link {
+    float: left;
+}
+.card img {
+    max-width: 35vw;
+}
+figure {
+    margin: 5vw 5vw 0;
+}
+figcaption {
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+figcaption span, figcaption::before, figcaption::after {
+    content: "";
+    display: block;
+}
+figcaption::before, figcaption::after {
+    flex-grow: 1;
+    height: 1px;
+    flex-basis: 0;
+    background-color: var(--body-text-color);
+}
+/* add a hover underline animation like a link! */
+a:hover figcaption::before, a:hover figcaption::after {
+    background-color: transparent;
+    background-image: repeating-linear-gradient(to right, var(--body-text-color) 0px, var(--body-text-color) 5px, #0000 5px, #0000 8px);
+    background-size: 8px;
+}
+.card .summary {
+    text-align: left;
+    float: none;
+    text-indent: 15px;
+}
+/* === 2-wide grid on landscape, vertical list on mobile ===*/
+@media screen and (orientation: landscape) {
+    .card img {
+        max-width: 20vw;
+    }
+    figure {
+        margin: revert;
+    }
+    .cardsection > h2 {
+        grid-row: 1;
+        grid-column: 1 / 3;
+    }
+    .cardsection {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+    .card.thissite {
+        grid-column: 1 / 3;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    section >section:nth-of-type(4n+1), section >section:nth-of-type(4n+0) {
+        background-color: var(--alt-color-2);
+    }
+    section >section:nth-of-type(4n+2), section >section:nth-of-type(4n+3) {
+        background-color: var(--alt-color-1);
+    }
+}
+section h2 {
+    text-shadow: 2px 2px rgba(0.0, 0.0, 0.0, 0.2);
+}
+
+footer {
+    display: flex;
+    border-image: url('img/border.svg') 32 fill / 32px / 31px round;
+    background-color: var(--footer-color);
+    box-shadow: 0px -10px 32px 0px var(--footer-shadow);
+    color: var(--footer-font-color);
+}
+footer a {
+    color: var(--footer-font-color);
+    text-decoration-color: currentColor;
+}
+footer a:hover {
+    text-decoration-style: dashed;
+}
+footer div {
+    padding: 1vw 2vw;
+    flex-grow: 1;
+}
+footer div:not(:last-child) {
+    text-align: right;
+    border-right:1px dashed var(--footer-font-color);
+}
+.wip {
+    display: none;
+}
