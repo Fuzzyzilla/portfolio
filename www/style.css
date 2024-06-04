@@ -19,6 +19,15 @@ body {
     --footer-color: rgb(114, 147, 180);
     --footer-font-color: black;
     --footer-shadow: #ffffff80;
+    /* column layout should be as wide as the narrowest axis */
+    /* for virtical screens, this is 0. For horizontal ones, it gives a centering effect */
+    --column-margin: min(15vw, calc((100vw - 100vmin)/2));
+}
+/* Add a document-uniform padding to the left and right to make a column content area down the center */
+.columnify {
+    /* padding is used to ensure backgroun stretches correctly */
+    padding-left: var(--column-margin);
+    padding-right: var(--column-margin);
 }
 #bigheader::before {
     content :"";
@@ -74,6 +83,8 @@ body {
     color: var(--title-color);
 }
 #bigwords .pronouns {
+    /* don't wrap this text, just move it all to the newline if need be! */
+    display: block;
     font-style: italic;
     font-weight: lighter;
     font-size: 0.5em;
@@ -336,3 +347,4 @@ footer div:not(:last-child) {
 .wip {
     display: none;
 }
+
