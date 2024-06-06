@@ -248,7 +248,7 @@ h3 {
 }
 
 h2 {
-    border-bottom: 1px solid var(--body-text-color);
+    border-bottom: 2px solid var(--body-text-color);
 }
 
 h3 {

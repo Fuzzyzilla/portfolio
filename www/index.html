@@ -53,24 +53,6 @@
     <section id="projects">
       <h2>Project Highlights</h2>
       <section>
-        <h3>Holonomy<time datetime="2022-7-17">July 2022</time></h3>
-        <a class="project-link" href="https://fuzzyzilla.itch.io/holonomy">
-          <figure>
-            <img src="/img/holonomy.webp" alt="Holonomy cover art">
-            <figcaption><span>Play on itch.io</span></figcaption>
-          </figure>
-        </a>
-        <p class="summary">
-          Made in 48 hours for the GMTK Game Jam, my platformer achieved 2nd place
-          among over 6,000 competing game jam entries. This game demonstrates novel
-          graphics techniques, allowing the 2D player character to navigate on the surface
-          of a 3D world. Custom physics logic allows the 2D physics of the player to
-          interact seamlessly with the geometry of the 3D environment. The game
-          features a striking visual style, implemented via custom material and post-
-          processing shaders.
-        </p>
-      </section>
-      <section>
         <h3>Fuzzpaint<time datetime="2021-10">October 2021 - Current</time></h3>
         <a class="project-link" href="https://github.com/Fuzzyzilla/fuzzpaint-vk">
           <figure>
@@ -87,10 +69,50 @@
           modifying brush settings after a drawing is complete.
         </p>
         <p class="summary">
-          Over several iterations, I
-          have implemented features including dynamic tesselation of vector objects in a
-          compute shader, signed distance field effects, and efficient rendering of mixed
-          objects of differing shader materials.
+          Over several iterations, I have implemented features including dynamic tesselation
+          of vector objects in a compute shader, signed distance field effects, and efficient
+          rendering of mixed objects of differing shader materials.
+        </p>
+      </section>
+      <section>
+        <h3>Octotablet<time datetime="2024-1-24">January 2024 - Current</time></h3>
+        <a class="project-link" href="https://github.com/Fuzzyzilla/octotablet">
+          <figure>
+            <img src="img/noto-octopus.svg" alt="Octopus icon">
+            <figcaption><span>View on GitHub</span></figcaption>
+          </figure>
+        </a>
+        <p class="summary">
+          A Rust library providing cross-platform access to graphics tablet and stylus devices on
+          Windows, Linux, and BSD. Through integrations with existing window managers, it provides
+          drop-in support with minimal changes to user code. Originally built as a subcomponent of
+          <em>Fuzzpaint</em>, it has since <a href="https://crates.io/crates/octotablet">been published on crates.io</a>
+          as a standalone project allowing anyone to integrate stylus support into their projects.
+        </p>
+        <p class="summary">
+          In writing this platform abstraction API, I took a different approach to many other abstractions.
+          Instead of providing an interface to all the common functionality, <em>Octotablet</em> aims to provide
+          access to the full capabilities of each platform - providing low level details to programs that benifit
+          from the extra data while still providing a uniform interface for users who just need an easy way
+          to access stylus motion events.
+        </p>
+      </section>
+      <section>
+        <h3>Holonomy<time datetime="2022-7-17">July 2022</time></h3>
+        <a class="project-link" href="https://fuzzyzilla.itch.io/holonomy">
+          <figure>
+            <img src="/img/holonomy.webp" alt="Holonomy cover art">
+            <figcaption><span>Play on itch.io</span></figcaption>
+          </figure>
+        </a>
+        <p class="summary">
+          Made in 48 hours for the GMTK Game Jam, my platformer achieved 2nd place
+          among over 6,000 competing game jam entries. This game demonstrates novel
+          graphics techniques, allowing the 2D player character to navigate on the surface
+          of a 3D world. Custom physics logic allows the 2D physics of the player to
+          interact seamlessly with the geometry of the 3D environment. The game
+          features a striking visual style, implemented via custom material and post-
+          processing shaders.
         </p>
       </section>
       <section>
@@ -120,9 +142,9 @@
           With HTML and CSS written by hand with helper scripts compiled with npm, this page represents
           many of my goals in software development. Thanks to an obsessive attention to
           memory footprint and performance without compromising form, function, nor acccessibility,
-          this page - scripts, styles, images and all - is under 150kB. This is much smaller than
+          this page - scripts, styles, images and all - is under 150kB transferred. This is much smaller than
           <a href="https://httparchive.org/reports/page-weight#bytesTotal">
-            the 2480kB median as reported by HTTP Archive
+            the 2610kB median as reported by HTTP Archive
           </a>
           - taking just 6% the bandwidth to display, decreasing load times and saving
           energy.
