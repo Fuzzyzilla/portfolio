@@ -348,7 +348,11 @@ section h2 {
 }
 
 /* ==== Show an animation acting as an <hr> ==== */
+/* To show, make a `<div><span></span></div>` */
 .hr-flipbook {
+    /* Be as wide as possible without causing overflow.
+     * height is determined by children's aspect ratio and grow modes.
+     * ...wait a minute, we're doing the layout engine's job here! */
     width: calc(100% - var(--min-margin) * 2);
     margin: var(--min-margin);
     display: flex;
@@ -366,7 +370,7 @@ section h2 {
 .hr-flipbook span {
     /* Center area, expanding to fill the screen with tiled image */
     background-repeat: round no-repeat;
-    /* set to height of entire atlas, to enable stretching */
+    /* set to height of entire atlas, to enable horizontal stretching */
     background-size: auto 1260px;
     flex-grow: 1;
     flex-shrink: 1;
@@ -380,9 +384,13 @@ section h2 {
 .hr-flipbook::before {
     /* Head area, clamped to left */
     content: "";
-    height: 538px;
-    width: 309px;
+    /* if shrinking, maintain height according to image rect */
+    aspect-ratio: 309 / 538;
+    /* width of this sprite */
+    flex-basis: 309px;
     flex-grow: 0;
+    /* magic number: width of atlas / width of this sprite */
+    background-size: 246.27% auto;
     animation: hr-flipbook-main 1.5s steps(2, jump-none) 0s infinite;
 }
 
@@ -390,14 +398,20 @@ section h2 {
 .hr-flipbook::after {
     /* tail area, clamped right edge */
     content: "";
-    height: 538px;
-    width: 452px;
+    /* if shrinking, maintain height according to image rect */
+    aspect-ratio: 452 / 538;
+    /* width of this sprite */
+    flex-basis: 452px;
     flex-grow: 0;
-    background-position: -309px 0px;
+    /* pin top right of image to top right of self */
+    background-position: 100% 0%;
+    /* magic number: width of atlas / width of this sprite */
+    background-size: 168.36% auto;
     animation: hr-flipbook-main 1.5s steps(2, jump-none) 0s infinite;
 }
 
 @keyframes hr-flipbook-main {
+    /* toggle between y pos of first and second frames */
     from {
         background-position-y: 0px;
     }
@@ -408,6 +422,7 @@ section h2 {
 }
 
 @keyframes hr-flipbook-wire {
+    /* toggle between y pos of first and second frames */
     from {
         background-position-y: -538px;
     }
@@ -417,9 +432,36 @@ section h2 {
     }
 }
 
-@media (prefers-reduced-motion) {
+/* Some hacks for small sizes. I couldn't think of a way to write the layout such that this
+ * behavior happens naturally :P */
 
-    /* disable animation if user requests */
+/* Remove stretch behaviour for small screens, where the stretch looks wrong and overflows occur.
+ * Magic number: width of assembled image
+ */
+@media (max-width: 1522px) {
+    .hr-flipbook span {
+        /* remove growing behavior, act like the other images. */
+        height: auto;
+        flex-basis: 761px;
+        aspect-ratio: 761 / 92;
+        flex-grow: 0;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+    .hr-flipbook span, .hr-flipbook::before, .hr-flipbook::after {
+        flex-shrink: 1;
+    }
+}
+/* super small res, remove wire section altogether.
+ * Magic number: width of sheep + monitor images, no wire.
+ */
+@media (max-width: 761px) {
+    .hr-flipbook span {
+        display: none;
+    }
+}
+/* disable the flipbook animation if user requests */
+@media (prefers-reduced-motion) {
     .hr-flipbook span,
     .hr-flipbook::before,
     .hr-flipbook::after {
