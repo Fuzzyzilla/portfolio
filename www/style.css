@@ -377,7 +377,15 @@ section h2 {
     /* align to the bottom of the area */
     align-self: flex-end;
     height: 92px;
-    background-position: 0px -538px;
+    /* ====== A note on atlas coordinates =====
+     * Just for future reference, this percentage is calculated by:
+     * (desired pixel coordinate for top of rect)/(height of image - height of self) * 100
+     * This comes from the fact that percentages calculate their value based on the size of 
+     * the container and the background to act as sort of an "anchor" location rather than a raw offset.
+     * We can't use px because the containers are dynamically sized! This same eq is
+     * used for animation keyframes below.
+     */
+    background-position: 0px 46.06%;
     animation: hr-flipbook-wire 1.5s steps(2, jump-none) 0s infinite;
 }
 
@@ -412,23 +420,25 @@ section h2 {
 
 @keyframes hr-flipbook-main {
     /* toggle between y pos of first and second frames */
+    /* Magic numbers: see note on atlas coordinates above */
     from {
-        background-position-y: 0px;
+        background-position-y: 0%;
     }
 
     to {
-        background-position-y: -630px;
+        background-position-y: 87.26%;
     }
 }
 
 @keyframes hr-flipbook-wire {
     /* toggle between y pos of first and second frames */
+    /* Magic numbers: see note on atlas coordinates above */
     from {
-        background-position-y: -538px;
+        background-position-y: 46.06%;
     }
 
     to {
-        background-position-y: -1168px;
+        background-position-y: 100%;
     }
 }
 
