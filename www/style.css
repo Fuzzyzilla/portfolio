@@ -363,7 +363,7 @@ section h2 {
 .hr-flipbook span,
 .hr-flipbook::before,
 .hr-flipbook::after {
-    background-image: url("img/hr-flipbook.png");
+    background-image: url("img/hr-flipbook.webp");
     mix-blend-mode: var(--one-bit-blend);
 }
 
@@ -407,18 +407,19 @@ section h2 {
     /* tail area, clamped right edge */
     content: "";
     /* if shrinking, maintain height according to image rect */
-    aspect-ratio: 452 / 538;
+    aspect-ratio: 451 / 538;
     /* width of this sprite */
-    flex-basis: 452px;
+    flex-basis: 451px;
     flex-grow: 0;
     /* pin top right of image to top right of self */
     background-position: 100% 0%;
     /* magic number: width of atlas / width of this sprite */
-    background-size: 168.36% auto;
+    background-size: 168.51% auto;
     animation: hr-flipbook-main 1.5s steps(2, jump-none) 0s infinite;
 }
 
 @keyframes hr-flipbook-main {
+
     /* toggle between y pos of first and second frames */
     /* Magic numbers: see note on atlas coordinates above */
     from {
@@ -431,6 +432,7 @@ section h2 {
 }
 
 @keyframes hr-flipbook-wire {
+
     /* toggle between y pos of first and second frames */
     /* Magic numbers: see note on atlas coordinates above */
     from {
@@ -448,30 +450,36 @@ section h2 {
 /* Remove stretch behaviour for small screens, where the stretch looks wrong and overflows occur.
  * Magic number: width of assembled image
  */
-@media (max-width: 1522px) {
+@media (max-width: 1520px) {
     .hr-flipbook span {
         /* remove growing behavior, act like the other images. */
         height: auto;
-        flex-basis: 761px;
-        aspect-ratio: 761 / 92;
+        flex-basis: 760px;
+        aspect-ratio: 760 / 92;
         flex-grow: 0;
         background-size: 100% auto;
         background-repeat: no-repeat;
     }
-    .hr-flipbook span, .hr-flipbook::before, .hr-flipbook::after {
+
+    .hr-flipbook span,
+    .hr-flipbook::before,
+    .hr-flipbook::after {
         flex-shrink: 1;
     }
 }
+
 /* super small res, remove wire section altogether.
  * Magic number: width of sheep + monitor images, no wire.
  */
-@media (max-width: 761px) {
+@media (max-width: 760px) {
     .hr-flipbook span {
         display: none;
     }
 }
+
 /* disable the flipbook animation if user requests */
 @media (prefers-reduced-motion) {
+
     .hr-flipbook span,
     .hr-flipbook::before,
     .hr-flipbook::after {
