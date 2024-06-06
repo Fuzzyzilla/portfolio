@@ -1,179 +1,185 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aspen Pratt</title>
-    <link rel="icon" href="img/sheep-icon.png" type="image/png" sizes="any">
-    <link rel="icon" href="img/sheep.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/style.css">
-    <noscript>
-      <style>
-        /* force show fallback image when scripts not present */
-        #dynba *.hidden {
-          opacity: 1.0 !important;
-          display: block !important;
-        }
-      </style>
-    </noscript>
-  </head>
-  <body>
-    <div id="bigheader">
-      <div id="bigwords">
-        <h1>Aspen Pratt
-          <span class="pronouns">they/them</span>
-        </h1>
-        <p>Open-source developer and tinkerer of shaders</p>
-        <noscript>
-          <p class="scriptless">This page contains webassembly and javascript content,
-            please enable javascript in your browser.</p>
-        </noscript>
-      </div>
-      <div id="sheep_container">
-        <div id="dynba">
-          <canvas aria-hidden="true" id="canv" width="512px" height="512px"></canvas>
-          <!--Static image as fallback in case of script, wasm, or webgl unavailability -->
-          <img class="hidden" id="fallback_sheep" src="img/sheep.svg" alt="Baa">
-        </div>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aspen Pratt</title>
+  <link rel="icon" href="img/sheep-icon.png" type="image/png" sizes="any">
+  <link rel="icon" href="img/sheep.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <noscript>
+    <style>
+      /* force show fallback image when scripts not present */
+      #dynba *.hidden {
+        opacity: 1.0 !important;
+        display: block !important;
+      }
+    </style>
+  </noscript>
+</head>
+
+<body>
+  <div id="bigheader">
+    <div id="bigwords">
+      <h1>Aspen Pratt
+        <span class="pronouns">they/them</span>
+      </h1>
+      <p>Open-source developer and tinkerer of shaders</p>
+      <noscript>
+        <p class="scriptless">This page contains webassembly and javascript content,
+          please enable javascript in your browser.</p>
+      </noscript>
+    </div>
+    <div id="sheep_container">
+      <div id="dynba">
+        <canvas aria-hidden="true" id="canv" width="512px" height="512px"></canvas>
+        <!--Static image as fallback in case of script, wasm, or webgl unavailability -->
+        <img class="hidden" id="fallback_sheep" src="img/sheep.svg" alt="Baa">
       </div>
     </div>
-    <nav class="columnify">
-      <a id="navname" href="#bigheader">
-        <img class="baa sr-skip" aria-hidden="true" id="fallback_sheep" src="img/sheep.svg" alt="Sheep Icon">
-        <span>Aspen Pratt</span>
-      </a>
-      <a href="#projects"><span>Projects</span></a>
-      <a href="#skills" class="wip"><span>Skills</span></a>
-      <a href="#education" class="wip"><span>Education &amp; Experience</span></a>
-      <a href="#contact"><span>Contact</span></a>
-    </nav>
-    <main class="columnify">
-      <section id="projects">
-        <h2>Project Highlights</h2>
-	<section>
-          <h3>Holonomy<time datetime="2022-7-17">July 2022</time></h3>
-          <a class="project-link" href="https://fuzzyzilla.itch.io/holonomy">
-            <figure>
-              <img src="/img/holonomy.webp" alt="Holonomy cover art">
-              <figcaption><span>Play on itch.io</span></figcaption>
-            </figure>
-          </a>
-          <p class="summary">
-            Made in 48 hours for the GMTK Game Jam, my platformer achieved 2nd place
-            among over 6,000 competing game jam entries. This game demonstrates novel
-            graphics techniques, allowing the 2D player character to navigate on the surface
-            of a 3D world. Custom physics logic allows the 2D physics of the player to
-            interact seamlessly with the geometry of the 3D environment. The game
-            features a striking visual style, implemented via custom material and post-
-            processing shaders.
-          </p>
-        </section>
-        <section>
-          <h3>Fuzzpaint<time datetime="2021-10">October 2021 - Current</time></h3>
-          <a class="project-link" href="https://github.com/Fuzzyzilla/fuzzpaint-vk">
-            <figure>
-              <img src="img/ralsei-full.png" alt="Ralsei, rendered in Fuzzpaint">
-              <figcaption><span>View on GitHub</span></figcaption>
-            </figure>
-          </a>
-          <p class="summary">
-            A work-in-progress vector graphics software aimed at digital artists, written in
-            Rust and featuring graphics acceleration with the Vulkan API (formerly C++ and OpenGL 4.0).
-            The aim is to make working with vector graphics as intuitive as working with
-            raster images, but allowing for editing capabilities and visual effects impossible
-            in a traditional layered image editing workflow - for example, retroactively
-            modifying brush settings after a drawing is complete.
-          </p>
-          <p class="summary">
-            Over several iterations, I
-            have implemented features including dynamic tesselation of vector objects in a
-            compute shader, signed distance field effects, and efficient rendering of mixed
-            objects of differing shader materials.
-          </p>
-        </section>
-        <section>
-          <h3>Other itch.io Games</h3>
-          <a class="project-link" href="https://fuzzyzilla.itch.io/">
-            <figure>
-              <img src="img/layout.webp" alt="Collage of various game covers">
-              <figcaption><span>View on itch.io</span></figcaption>
-            </figure>
-          </a>
-          <p class="summary">
-            I have taken part in many online game jams, each project using the time-limited
-            opportinuty to explore a new aspect of game development. From platformers with
-            portals to UI based strategy, digital art to sound design, these sprints have
-            helped me expand my abilities as a designer and developer. 
-          </p>
-        </section>
-        <section class="thissite">
-          <h3>This site!<time datetime="2024-06">June 2024</time></h3>
-	  <a class="project-link" href="https://github.com/Fuzzyzilla/portfolio">
-	    <figure>
-	      <img src="img/sheep.svg" alt="Sheep icon" width="100px">
-	      <figcaption><em>Baa!</em></figcaption>
-	    </figure>
-	  </a>
-          <p class="summary">
-            With HTML and CSS written by hand with helper scripts compiled with npm, this page represents
-            many of my goals in software development. Thanks to an obsessive attention to
-            memory footprint and performance without compromising form, function, nor acccessibility,
-            this page - scripts, styles, images and all - is under 150kB. This is much smaller than
-            <a href="https://httparchive.org/reports/page-weight#bytesTotal">
-              the 2480kB median as reported by HTTP Archive
-            </a>
-            - taking just 6% the bandwidth to display, decreasing load times and saving
-            energy.
-          </p>
-          <p class="summary">
-            The interactive animation at the top of this page
-            <span id="animation-failed"></span>
-            was built in Rust using
-            wasm-pack. It features graphics acceleration using WebGL2, with animation
-            running on the GPU through some rather esoteric use of
-            <code>TransformFeedback</code> shaders to perform compute-like physics!
-          </p>
-        </section>
+  </div>
+  <nav class="columnify">
+    <a id="navname" href="#bigheader">
+      <img class="baa sr-skip" aria-hidden="true" id="fallback_sheep" src="img/sheep.svg" alt="Sheep Icon">
+      <span>Aspen Pratt</span>
+    </a>
+    <a href="#projects"><span>Projects</span></a>
+    <a href="#skills" class="wip"><span>Skills</span></a>
+    <a href="#education" class="wip"><span>Education &amp; Experience</span></a>
+    <a href="#contact"><span>Contact</span></a>
+  </nav>
+  <main class="columnify">
+    <section id="projects">
+      <h2>Project Highlights</h2>
+      <section>
+        <h3>Holonomy<time datetime="2022-7-17">July 2022</time></h3>
+        <a class="project-link" href="https://fuzzyzilla.itch.io/holonomy">
+          <figure>
+            <img src="/img/holonomy.webp" alt="Holonomy cover art">
+            <figcaption><span>Play on itch.io</span></figcaption>
+          </figure>
+        </a>
+        <p class="summary">
+          Made in 48 hours for the GMTK Game Jam, my platformer achieved 2nd place
+          among over 6,000 competing game jam entries. This game demonstrates novel
+          graphics techniques, allowing the 2D player character to navigate on the surface
+          of a 3D world. Custom physics logic allows the 2D physics of the player to
+          interact seamlessly with the geometry of the 3D environment. The game
+          features a striking visual style, implemented via custom material and post-
+          processing shaders.
+        </p>
       </section>
-      <section id="skills" class="wip">
-        What are you doing, poking around in here? ;&rpar;
-        <h2>Skills</h2>
-        Content content<br>
-        blah blah<br>
-        blah blah<br>
-        blah blah<br>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Suspendisse ac fermentum leo, a malesuada erat. In sit amet ante lobortis,
-        posuere libero non, vulputate orci. Praesent blandit massa lorem, vitae ornare
-        odio pellentesque vitae. Nunc imperdiet augue dui, sit amet hendrerit mi luctus
-        in. Nullam convallis tortor finibus lacinia imperdiet. Vivamus justo odio,
-        lacinia pharetra cursus vel, malesuada at tortor. Curabitur quam risus, auctor
-        et sollicitudin vel, tincidunt sed diam. Praesent massa ante, rhoncus eu nisi
-        vel, luctus mollis felis. Donec bibendum, turpis et dignissim hendrerit, justo
-        libero porttitor nunc, sit amet ullamcorper dui elit id lorem. Aliquam accumsan
-        quam et auctor pretium. Duis sit amet magna magna. 
+      <section>
+        <h3>Fuzzpaint<time datetime="2021-10">October 2021 - Current</time></h3>
+        <a class="project-link" href="https://github.com/Fuzzyzilla/fuzzpaint-vk">
+          <figure>
+            <img src="img/ralsei-full.png" alt="Ralsei, rendered in Fuzzpaint">
+            <figcaption><span>View on GitHub</span></figcaption>
+          </figure>
+        </a>
+        <p class="summary">
+          A work-in-progress vector graphics software aimed at digital artists, written in
+          Rust and featuring graphics acceleration with the Vulkan API (formerly C++ and OpenGL 4.0).
+          The aim is to make working with vector graphics as intuitive as working with
+          raster images, but allowing for editing capabilities and visual effects impossible
+          in a traditional layered image editing workflow - for example, retroactively
+          modifying brush settings after a drawing is complete.
+        </p>
+        <p class="summary">
+          Over several iterations, I
+          have implemented features including dynamic tesselation of vector objects in a
+          compute shader, signed distance field effects, and efficient rendering of mixed
+          objects of differing shader materials.
+        </p>
       </section>
-      <section id="education" class="wip">
-        <h2>Education &amp; Experience</h2>
-        Content content
+      <section>
+        <h3>Other itch.io Games</h3>
+        <a class="project-link" href="https://fuzzyzilla.itch.io/">
+          <figure>
+            <img src="img/layout.webp" alt="Collage of various game covers">
+            <figcaption><span>View on itch.io</span></figcaption>
+          </figure>
+        </a>
+        <p class="summary">
+          I have taken part in many online game jams, each project using the time-limited
+          opportinuty to explore a new aspect of game development. From platformers with
+          portals to UI based strategy, digital art to sound design, these sprints have
+          helped me expand my abilities as a designer and developer.
+        </p>
       </section>
-    </main>
-    <footer class="columnify" id="contact">
-      <div>
-        <p>Contact me:</p>
-        <address>
-          Aspen Pratt
-          <br>
-          <a href="" id="email">Email</a>
-        </address>
-      </div>
-      <div>
-        <a href="https://www.github.com/Fuzzyzilla">Github</a>
-        <a href="https://Fuzzyzilla.itch.io/">Itch.io</a>
-        <a href="https://www.linkedin.com/in/aspen-pratt-33a6571bb/">LinkedIn</a>
-      </div>
-    </footer>
-    <script src="./bootstrap.js"></script>
-  </body>
-</html>
+      <section class="thissite">
+        <h3>This site!<time datetime="2024-06">June 2024</time></h3>
+        <a class="project-link" href="https://github.com/Fuzzyzilla/portfolio">
+          <figure>
+            <img src="img/sheep.svg" alt="Sheep icon" width="100px">
+            <figcaption><em>Baa!</em></figcaption>
+          </figure>
+        </a>
+        <p class="summary">
+          With HTML and CSS written by hand with helper scripts compiled with npm, this page represents
+          many of my goals in software development. Thanks to an obsessive attention to
+          memory footprint and performance without compromising form, function, nor acccessibility,
+          this page - scripts, styles, images and all - is under 150kB. This is much smaller than
+          <a href="https://httparchive.org/reports/page-weight#bytesTotal">
+            the 2480kB median as reported by HTTP Archive
+          </a>
+          - taking just 6% the bandwidth to display, decreasing load times and saving
+          energy.
+        </p>
+        <p class="summary">
+          The interactive animation at the top of this page
+          <span id="animation-failed"></span>
+          was built in Rust using
+          wasm-pack. It features graphics acceleration using WebGL2, with animation
+          running on the GPU through some rather esoteric use of
+          <code>TransformFeedback</code> shaders to perform compute-like physics!
+        </p>
+      </section>
+    </section>
+    <section id="skills" class="wip">
+      What are you doing, poking around in here? ;&rpar;
+      <h2>Skills</h2>
+      Content content<br>
+      blah blah<br>
+      blah blah<br>
+      blah blah<br>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Suspendisse ac fermentum leo, a malesuada erat. In sit amet ante lobortis,
+      posuere libero non, vulputate orci. Praesent blandit massa lorem, vitae ornare
+      odio pellentesque vitae. Nunc imperdiet augue dui, sit amet hendrerit mi luctus
+      in. Nullam convallis tortor finibus lacinia imperdiet. Vivamus justo odio,
+      lacinia pharetra cursus vel, malesuada at tortor. Curabitur quam risus, auctor
+      et sollicitudin vel, tincidunt sed diam. Praesent massa ante, rhoncus eu nisi
+      vel, luctus mollis felis. Donec bibendum, turpis et dignissim hendrerit, justo
+      libero porttitor nunc, sit amet ullamcorper dui elit id lorem. Aliquam accumsan
+      quam et auctor pretium. Duis sit amet magna magna.
+    </section>
+    <section id="education" class="wip">
+      <h2>Education &amp; Experience</h2>
+      Content content
+    </section>
+  </main>
+  <!-- Show an animated <hr> like element -->
+  <div role="separator" class="hr-flipbook">
+    <span></span>
+  </div>
+  <footer class="columnify" id="contact">
+    <div>
+      <p>Contact me:</p>
+      <address>
+        Aspen Pratt
+        <br>
+        <a href="" id="email">Email</a>
+      </address>
+    </div>
+    <div>
+      <a href="https://www.github.com/Fuzzyzilla">Github</a>
+      <a href="https://Fuzzyzilla.itch.io/">Itch.io</a>
+      <a href="https://www.linkedin.com/in/aspen-pratt-33a6571bb/">LinkedIn</a>
+    </div>
+  </footer>
+  <script src="./bootstrap.js"></script>
+</body>
 
+</html>

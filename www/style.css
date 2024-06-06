@@ -1,6 +1,7 @@
 html {
     scroll-behavior: smooth;
 }
+
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -19,26 +20,30 @@ body {
     --footer-color: rgb(114, 147, 180);
     --footer-font-color: black;
     --footer-shadow: #ffffff80;
+    /* A blend mode where black is "transparent" and white is high-contrast with the background */
+    --one-bit-blend: difference;
     --min-margin: 3vw;
     /* column layout should be as wide as the narrowest axis */
     /* for virtical screens, this is 0. For horizontal ones, it gives a centering effect */
     --column-padding: max(var(--min-margin), min(15vw, calc((100vw - 100vmin)/2)));
 }
+
 /* Add a document-uniform padding to the left and right to make a column content area down the center */
 .columnify {
     /* padding is used to ensure backgroun stretches correctly */
     padding-left: var(--column-padding);
     padding-right: var(--column-padding);
 }
+
 #bigheader::before {
-    content :"";
+    content: "";
     display: block;
-    position :fixed;
+    position: fixed;
     z-index: -1;
     left: 0;
-    right:0;
-    top:0;
-    bottom:-10vh;
+    right: 0;
+    top: 0;
+    bottom: -10vh;
     background-image: url("/img/gggrain.svg");
     image-rendering: pixelated;
     background-repeat: repeat;
@@ -47,6 +52,7 @@ body {
     /* lowered for dark mode */
     opacity: 0.4;
 }
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: rgb(19, 24, 32);
@@ -65,17 +71,20 @@ body {
         --footer-color: rgb(10, 9, 14);
         --footer-font-color: white;
         --footer-shadow: #00000080;
+        --one-bit-blend: lighten;
     }
+
     body::before {
         opacity: 0.3;
     }
 }
+
 #bigheader {
     /* full screen, minus padding, minus nav */
     height: 90vh;
     width: 90vw;
     padding: 5vw;
-    overflow:hidden;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -83,6 +92,7 @@ body {
     align-items: left;
     color: var(--title-color);
 }
+
 #bigwords .pronouns {
     /* don't wrap this text, just move it all to the newline if need be! */
     display: inline-block;
@@ -90,65 +100,74 @@ body {
     font-weight: lighter;
     font-size: 0.5em;
 }
+
 #bigwords {
     flex-grow: 0;
     flex-shrink: 0.5;
 }
+
 #bigwords * {
-    margin : 5px;
+    margin: 5px;
     font-size: 2em;
     text-shadow: 0px 0px 2px var(--title-shadow-color), 0px 0px 10px var(--title-shadow-color);
 }
+
 #bigwords .scriptless {
     font-size: medium;
 }
+
 #bigheader h1 {
     font-size: 5em;
 }
+
 #sheep_container {
     position: -webkit-sticky;
     position: sticky;
     z-index: -1;
-    left:0;
-    bottom:0;
+    left: 0;
+    bottom: 0;
     flex-grow: 1.0;
     height: 512px;
 }
+
 #dynba {
     float: right;
-    position:relative;
+    position: relative;
     aspect-ratio: 1;
     height: 100%;
 }
+
 #dynba * {
     position: absolute;
     /* i give up trying to make this look good on
     narrow vertical displays -w-
     Reduce this spacing on landscape displays.*/
-    right:-128px;
-    top:0;
+    right: -128px;
+    top: 0;
     width: 512px;
     height: 512px;
     /*make sure the user can't drag fallback
     svg while playing with animation*/
-    user-drag: none; 
+    user-drag: none;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+
 #dynba *.hidden {
     display: none;
     opacity: 0;
 }
+
 nav {
     color: var(--bar-text-color);
     position: -webkit-sticky;
     position: sticky;
     font-size: 1rem;
     top: 0;
-    bottom:0;
+    bottom: 0;
     padding: 0;
     display: flex;
     justify-content: space-around;
@@ -165,13 +184,16 @@ nav {
         align-items: center;
         flex-direction: row;
     }
+
     nav {
         padding: 0 10vw 0 0;
     }
+
     #dynba * {
-        right:0;
+        right: 0;
     }
 }
+
 #navname {
     display: flex;
     align-self: center;
@@ -180,7 +202,9 @@ nav {
     text-align: left;
     text-decoration: none;
 }
-nav a, nav div {
+
+nav a,
+nav div {
     color: var(--bar-text-color);
     flex-grow: 1;
     flex-shrink: 1;
@@ -188,17 +212,21 @@ nav a, nav div {
     display: flex;
     align-items: center;
 }
+
 nav a span {
     width: 100%;
     text-align: center;
 }
+
 nav a:hover {
     text-decoration-style: dashed;
     background-color: var(--bar-highlight);
 }
+
 nav .baa {
     height: 2em;
 }
+
 main {
     background-color: var(--bg-color);
     color: var(--body-text-color);
@@ -210,44 +238,56 @@ main {
     overflow: hidden;
     line-height: 150%;
 }
-h2, h3 {
+
+h2,
+h3 {
     margin-top: 0;
     width: 100%;
     text-align: left;
     padding-bottom: 0.5em;
 }
+
 h2 {
     border-bottom: 1px solid var(--body-text-color);
 }
+
 h3 {
     border-bottom: 1px dashed var(--body-text-color);
 }
-main > section {
+
+main>section {
     scroll-padding-top: 10vh;
     scroll-margin-top: 10vh;
 }
+
 time {
     font-weight: lighter;
     font-size: smaller;
     font-style: italic;
 }
+
 time::before {
-    content:" — ";
+    content: " — ";
 }
+
 main a {
     color: var(--body-text-color);
 }
+
 main a:hover {
     color: var(--body-text-color);
     text-decoration-style: dashed;
 }
+
 figure {
     margin: 0;
     padding: 0
 }
+
 figure img {
     width: 100%;
 }
+
 .project-link {
     width: min(100vw, 20vh);
     margin-left: var(--min-margin);
@@ -256,6 +296,7 @@ figure img {
     display: block;
     float: left;
 }
+
 figcaption {
     display: flex;
     justify-content: stretch;
@@ -263,36 +304,127 @@ figcaption {
     text-align: center;
     width: 100%;
 }
+
 figcaption * {
     padding-left: 5px;
     padding-right: 5px;
 }
-figcaption span, figcaption::before, figcaption::after {
+
+figcaption span,
+figcaption::before,
+figcaption::after {
     content: "";
     display: block;
 }
-figcaption::before, figcaption::after {
+
+figcaption::before,
+figcaption::after {
     /* add a thin white line around caption text */
     flex-grow: 1;
     height: 1px;
     flex-basis: 0;
     background-color: var(--body-text-color);
 }
+
 /* add a hover underline animation like a link! */
-a:hover figcaption::before, a:hover figcaption::after {
+a:hover figcaption::before,
+a:hover figcaption::after {
     background-color: transparent;
     background-image: repeating-linear-gradient(to right, var(--body-text-color) 0px, var(--body-text-color) 5px, #0000 5px, #0000 8px);
     background-size: 8px;
 }
+
 .summary {
     text-align: left;
     text-indent: 15px;
 }
+
 section {
     clear: both;
 }
+
 section h2 {
     text-shadow: 2px 2px rgba(0.0, 0.0, 0.0, 0.2);
+}
+
+/* ==== Show an animation acting as an <hr> ==== */
+.hr-flipbook {
+    width: calc(100% - var(--min-margin) * 2);
+    margin: var(--min-margin);
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.hr-flipbook span,
+.hr-flipbook::before,
+.hr-flipbook::after {
+    background-image: url("img/hr-flipbook.png");
+    mix-blend-mode: var(--one-bit-blend);
+}
+
+.hr-flipbook span {
+    /* Center area, expanding to fill the screen with tiled image */
+    background-repeat: round no-repeat;
+    /* set to height of entire atlas, to enable stretching */
+    background-size: auto 1260px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    /* align to the bottom of the area */
+    align-self: flex-end;
+    height: 92px;
+    background-position: 0px -538px;
+    animation: hr-flipbook-wire 1.5s steps(2, jump-none) 0s infinite;
+}
+
+.hr-flipbook::before {
+    /* Head area, clamped to left */
+    content: "";
+    height: 538px;
+    width: 309px;
+    flex-grow: 0;
+    animation: hr-flipbook-main 1.5s steps(2, jump-none) 0s infinite;
+}
+
+
+.hr-flipbook::after {
+    /* tail area, clamped right edge */
+    content: "";
+    height: 538px;
+    width: 452px;
+    flex-grow: 0;
+    background-position: -309px 0px;
+    animation: hr-flipbook-main 1.5s steps(2, jump-none) 0s infinite;
+}
+
+@keyframes hr-flipbook-main {
+    from {
+        background-position-y: 0px;
+    }
+
+    to {
+        background-position-y: -630px;
+    }
+}
+
+@keyframes hr-flipbook-wire {
+    from {
+        background-position-y: -538px;
+    }
+
+    to {
+        background-position-y: -1168px;
+    }
+}
+
+@media (prefers-reduced-motion) {
+
+    /* disable animation if user requests */
+    .hr-flipbook span,
+    .hr-flipbook::before,
+    .hr-flipbook::after {
+        animation: none !important;
+    }
 }
 
 footer {
@@ -302,22 +434,26 @@ footer {
     box-shadow: 0px -10px 32px 0px var(--footer-shadow);
     color: var(--footer-font-color);
 }
+
 footer a {
     color: var(--footer-font-color);
     text-decoration-color: currentColor;
 }
+
 footer a:hover {
     text-decoration-style: dashed;
 }
+
 footer div {
     padding: 1vw 2vw;
     flex-grow: 1;
 }
+
 footer div:not(:last-child) {
     text-align: right;
-    border-right:1px dashed var(--footer-font-color);
+    border-right: 1px dashed var(--footer-font-color);
 }
+
 .wip {
     display: none;
 }
-
