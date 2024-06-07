@@ -13,9 +13,9 @@ body {
     --bar-bg: rgba(0.0, 0.0, 0.0, 0.8);
     --bar-shadow: black;
     --bar-highlight: rgba(0.0, 0.0, 0.0, 1.0);
-    --bg-color: rgb(149, 175, 185);
-    --alt-color-1: rgb(161, 190, 218);
-    --alt-color-2: rgb(175, 205, 219);
+    --bg-color: rgb(178, 201, 210);
+    --inlay-color: rgb(224, 227, 230);
+    --inlay-shadow-color: rgb(140, 150, 160);
     /* must match the behavior of img/border.svg */
     --footer-color: rgb(114, 147, 180);
     --footer-font-color: black;
@@ -38,13 +38,14 @@ body {
 #bigheader::before {
     content: "";
     display: block;
-    position: fixed;
+    position: absolute;
     z-index: -1;
     left: 0;
     right: 0;
     top: 0;
     bottom: -10vh;
     background-image: url("/img/gggrain.svg");
+    background-attachment: fixed;
     image-rendering: pixelated;
     background-repeat: repeat;
     background-position: center;
@@ -65,8 +66,8 @@ body {
         --bar-shadow: rgb(9, 5, 48);
         --bar-highlight: rgb(18, 19, 31);
         --bg-color: rgb(48, 54, 63);
-        --alt-color-1: rgb(16, 17, 34);
-        --alt-color-2: rgb(18, 15, 27);
+        --inlay-color: rgb(36, 42, 51);
+        --inlay-shadow-color: rgb(28, 33, 39);
         /* must match the behavior of img/border.svg */
         --footer-color: rgb(10, 9, 14);
         --footer-font-color: white;
@@ -236,7 +237,7 @@ main {
     /* room for footer border */
     padding-bottom: 50px;
     overflow: hidden;
-    line-height: 150%;
+    line-height: 175%;
 }
 
 h2,
@@ -279,6 +280,18 @@ main a:hover {
     text-decoration-style: dashed;
 }
 
+.project-info {
+    width: min(100vw, 20vh);
+    padding: calc(var(--min-margin) / 2.0);
+    margin-right: var(--min-margin);
+    margin-bottom: var(--min-margin);
+    display: block;
+    float: left;
+    border-radius: 10px;
+    background-color: var(--inlay-color);
+    box-shadow: 0px -10px 10px -10px inset var(--inlay-shadow-color), 0px 6px var(--inlay-shadow-color);
+}
+
 figure {
     margin: 0;
     padding: 0
@@ -286,15 +299,6 @@ figure {
 
 figure img {
     width: 100%;
-}
-
-.project-link {
-    width: min(100vw, 20vh);
-    margin-left: var(--min-margin);
-    margin-right: var(--min-margin);
-    margin-bottom: var(--min-margin);
-    display: block;
-    float: left;
 }
 
 figcaption {
@@ -334,6 +338,46 @@ a:hover figcaption::after {
     background-size: 8px;
 }
 
+/* Add headers for the skill lists inside each project-info */
+.stats {
+    line-height: initial;
+    font-size: smaller;
+}
+
+.stats ul {
+    padding-left: 0;
+    list-style-position: inside;
+    list-style-type: "- ";
+    margin-top: 0.5em;
+    margin-bottom: 0;
+}
+
+.stats ul::before {
+    text-indent: 20px;
+    /* funny hack to show a dash before the text acting as a serparator */
+    background-size: 15px 1px;
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+    background-image: linear-gradient(to right, var(--body-text-color), var(--body-text-color));
+
+    display: block;
+    width: 100%;
+    font-weight: bold;
+}
+
+/* Header text for each section */
+.skills::before {
+    content: "Skills";
+}
+
+.languages::before {
+    content: "Languages";
+}
+
+.technologies::before {
+    content: "Technologies";
+}
+
 .summary {
     text-align: left;
     text-indent: 15px;
@@ -343,7 +387,8 @@ section {
     clear: both;
 }
 
-section h2 {
+h2,
+h3 {
     text-shadow: 2px 2px rgba(0.0, 0.0, 0.0, 0.2);
 }
 
@@ -354,7 +399,9 @@ section h2 {
      * height is determined by children's aspect ratio and grow modes.
      * ...wait a minute, we're doing the layout engine's job here! */
     width: calc(100% - var(--min-margin) * 2);
-    margin: var(--min-margin);
+    margin-left: var(--min-margin);
+    margin-right: var(--min-margin);
+    padding-bottom: var(--min-margin);
     display: flex;
     flex-direction: row;
     overflow: hidden;
@@ -365,6 +412,7 @@ section h2 {
 .hr-flipbook::after {
     background-image: url("img/hr-flipbook.webp");
     mix-blend-mode: var(--one-bit-blend);
+    image-rendering: pixelated;
 }
 
 .hr-flipbook span {
