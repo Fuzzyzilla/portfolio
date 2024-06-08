@@ -62,7 +62,7 @@ body {
         --title-shadow-color: black;
         --body-text-color: white;
         --bar-text-color: rgb(255, 255, 255);
-        --bar-bg: rgba(43, 52, 71, 0.9);
+        --bar-bg: rgba(43, 52, 71, 0.92);
         --bar-shadow: rgb(9, 5, 48);
         --bar-highlight: rgb(18, 19, 31);
         --bg-color: rgb(48, 54, 63);
@@ -92,6 +92,7 @@ body {
     justify-content: start;
     align-items: left;
     color: var(--title-color);
+    box-shadow: 0px -30vh 15vh -25vh var(--footer-shadow) inset;
 }
 
 #bigwords .pronouns {
@@ -166,6 +167,8 @@ nav {
     color: var(--bar-text-color);
     position: -webkit-sticky;
     position: sticky;
+    /* always on top, otherwise .hr-flipbook behaves weird. why did it ever work without this z-index?!? */
+    z-index: 999;
     font-size: 1rem;
     top: 0;
     bottom: 0;
@@ -214,6 +217,10 @@ nav div {
     align-items: center;
 }
 
+nav a:not(:last-child) {
+    border-right: 1px dotted var(--bar-text-color);
+}
+
 nav a span {
     width: 100%;
     text-align: center;
@@ -240,11 +247,17 @@ main {
     line-height: 175%;
 }
 
+main p {
+    text-indent: 15px;
+}
+
+main em {
+    font-weight: bolder;
+}
+
 h2,
 h3 {
-    margin-top: 0;
     width: 100%;
-    text-align: left;
     padding-bottom: 0.5em;
 }
 
@@ -256,7 +269,10 @@ h3 {
     border-bottom: 1px dashed var(--body-text-color);
 }
 
-main>section {
+
+section,
+h2,
+h3 {
     scroll-padding-top: 10vh;
     scroll-margin-top: 10vh;
 }
@@ -280,7 +296,13 @@ main a:hover {
     text-decoration-style: dashed;
 }
 
-.project-info {
+
+.boldline {
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.vinfo-box {
     width: min(100vw, 20vh);
     padding: calc(var(--min-margin) / 2.0);
     margin-right: var(--min-margin);
@@ -289,7 +311,17 @@ main a:hover {
     float: left;
     border-radius: 10px;
     background-color: var(--inlay-color);
-    box-shadow: 0px -10px 10px -10px inset var(--inlay-shadow-color), 0px 6px var(--inlay-shadow-color);
+    box-shadow: 0px -10px 10px -10px var(--inlay-shadow-color) inset, 0px 6px var(--inlay-shadow-color);
+}
+
+.hinfo-box {
+    padding: calc(var(--min-margin) / 2.0);
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 10px;
+    background-color: var(--inlay-color);
+    box-shadow: 0px -10px 10px -10px var(--inlay-shadow-color) inset, 0px 6px var(--inlay-shadow-color);
 }
 
 figure {
@@ -338,21 +370,48 @@ a:hover figcaption::after {
     background-size: 8px;
 }
 
-/* Add headers for the skill lists inside each project-info */
-.stats {
+
+
+/* Add headers for the skill lists inside each info-box */
+.vstats {
     line-height: initial;
     font-size: smaller;
 }
 
-.stats ul {
-    padding-left: 0;
-    list-style-position: inside;
+.hstats {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    line-height: initial;
+    font-size: smaller;
+}
+
+.hstats ul {
+    display: block;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+ul {
+    margin: 0;
     list-style-type: "- ";
+    list-style-position: inside;
+}
+
+.vstats ul,
+.hstats ul {
+    padding-left: calc(var(--min-margin)/2.0);
+    border-left: 1px dotted var(--body-text-color);
     margin-top: 0.5em;
     margin-bottom: 0;
 }
 
-.stats ul::before {
+/* Setup display style for list headers */
+.skills::before,
+.languages::before,
+.technologies::before,
+.courses::before {
+    margin: 0;
     text-indent: 20px;
     /* funny hack to show a dash before the text acting as a serparator */
     background-size: 15px 1px;
@@ -378,9 +437,8 @@ a:hover figcaption::after {
     content: "Technologies";
 }
 
-.summary {
-    text-align: left;
-    text-indent: 15px;
+.courses::before {
+    content: "Notable Courses";
 }
 
 section {
