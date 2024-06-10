@@ -68,12 +68,14 @@
           Through over 10 years of self-driven research and experimentation into anything and
           everything that sparks my passion for computing, I have built up a wide range of skills
           building everything from micro-optimized embedded C++ to high-level graphical software.
+
+          Currently my obsession lies with Rust and tiny Unixes!
         </p>
         <p>
-          About 5 years ago, I picked up <em>OpenGL 3</em> for the first time, and I found myself so
+          About 6 years ago, I picked up <em>OpenGL 3</em> for the first time, and I found myself so
           infatuated that computer graphics quickly became my area of focus. In much of my work, like
           game design competitions and even this website, I find myself using such low-level graphics
-          trickery to achieve otherwise infeasible graphical effects wth increased performance.
+          trickery to achieve otherwise infeasible graphical effects with increased performance.
 
           Since then, my projects have shifted towards the <em>Vulkan</em> and <em>WebGPU</em> APIs,
           getting me closer to the inner workings of graphics hardware and allowing me to strive even
@@ -92,7 +94,7 @@
     <section id="education">
       <h2>Education</h2>
       <section class="columnify">
-        <h3>Eastern Washington University <time datetime="2022-01">January 2022 - December 2022</time></h3>
+        <h3>Eastern Washington University <time datetime="2022-01">January 2022 - April 2023</time></h3>
         <div class="hinfo-box">
           <div class="hstats">
             <ul class="languages">
@@ -103,12 +105,14 @@
             </ul>
             <ul class="technologies">
               <li>Linux/BSD</li>
+              <li>SSH</li>
+              <li>Git</li>
               <li>Jetbrains IDEs</li>
               <li>NodeJS</li>
             </ul>
             <ul class="skills">
-              <li>Git</li>
               <li>Linear Algebra</li>
+              <li>Collaborative Development</li>
             </ul>
             <ul class="courses">
               <li>C and Unix Programming</li>
@@ -120,7 +124,10 @@
           </div>
         </div>
         <p>
-          Completed 4 terms towards a Bachelor's of Computer Science, Minor in Mathematics.
+          Completed 4 terms towards a Bachelor's of Computer Science.
+        </p>
+        <p>
+          Minor in Mathematics.
         </p>
         <p>
           Honors and Dean's List <time datetime="2022-01">January 2022 through December 2022</time>
@@ -128,7 +135,7 @@
       </section>
 
       <section class="columnify">
-        <h3>Skagit Valley College <time datetime="2017-10">October 2017 - April 2020</time></h3>
+        <h3>Skagit Valley College <time datetime="2018-10">October 2018 - April 2020</time></h3>
         <div class="hinfo-box">
           <div class="hstats">
             <ul class="languages">
@@ -151,7 +158,7 @@
       </section>
 
       <section class="columnify">
-        <h3>Anacortes High School <time datetime="2015-10">October 2015 - April 2020</time></h3>
+        <h3>Anacortes High School <time datetime="2016-10">October 2016 - April 2020</time></h3>
         <div class="hinfo-box">
           <div class="hstats">
             <ul class="languages">
@@ -182,9 +189,9 @@
       <section class="columnify">
         <h3 id="fuzzpaint">Fuzzpaint <time datetime="2021-10">October 2021 - Current</time></h3>
         <div class="vinfo-box">
-          <a class="project-link" href="https://github.com/Fuzzyzilla/fuzzpaint-vk">
+          <a class="project-link" href="https://github.com/Fuzzyzilla/fuzzpaint-vk" aria-label="View on Github">
             <figure>
-              <img src="img/ralsei-full.png" alt="A goat character illustrated in Fuzzpaint v0">
+              <img src="img/fuzzpaint.webp" alt="Screenshot of the Fuzzpaint software with a sheep illustrated">
               <figcaption><span>View on GitHub</span></figcaption>
             </figure>
           </a>
@@ -206,23 +213,31 @@
         </div>
         <p>
           A work-in-progress vector graphics software aimed at digital artists, written in
-          Rust and featuring graphics acceleration with the Vulkan API (formerly C++ and OpenGL 4.0).
+          Rust and featuring extensive graphics acceleration with the Vulkan API.
           The aim is to make working with vector graphics as intuitive as working with
           raster images, but allowing for editing capabilities and visual effects impossible
           in a traditional layered image editing workflow - for example, retroactively
-          modifying brush settings after a drawing is complete.
+          modifying brush settings after a drawing is complete. The core idea that makes this possible
+          is storing the raw motion of the pen and using that to generate an image on-the-fly.
         </p>
         <p>
-          Over several iterations, I have implemented features including dynamic tesselation
-          of vector objects in a compute shader, signed distance field effects, and efficient
-          rendering of mixed objects of differing shader materials.
+          Rooted in a frustration with the present state of graphics apps, I am taking strides to
+          fix the many UX flaws that sneak their way into such complicated pieces of software - creative
+          software should never get in the way of an artist's flow. Fuzzpaint's unique internal structure
+          also allows new UX workflows that are not usually feasible. For example, it features an infinite
+          undo-redo tree.
+        </p>
+        <p>
+          This stems from an experiment written C++ and OpenGL 4.0 back in 2021, where the concept
+          worked much better than I ever anticipated. Since then, I have dedicated myself to
+          producing this software for free to bring the unique workflow to artists in a user-friendly manner.
         </p>
       </section>
 
       <section class="columnify">
         <h3>Octotablet <time datetime="2024-1-24">January 2024 - Current</time></h3>
         <div class="vinfo-box">
-          <a class="project-link" href="https://github.com/Fuzzyzilla/octotablet">
+          <a class="project-link" href="https://github.com/Fuzzyzilla/octotablet" aria-label="View on Github">
             <figure>
               <img src="img/noto-octopus.svg" alt="Octopus icon">
               <figcaption><span>View on GitHub</span></figcaption>
@@ -245,7 +260,7 @@
           </div>
         </div>
         <p>
-          A first of its kind Rust library providing cross-platform access to graphics tablet and stylus
+          A first of its kind library providing cross-platform access to graphics tablet and stylus
           devices on Windows, Linux, and BSD. Through integrations with existing window management libraries,
           it provides drop-in support with minimal changes to user code. Originally built as a subcomponent of
           <em>Fuzzpaint</em>, it has since <a href="https://crates.io/crates/octotablet">been published on crates.io</a>
@@ -255,15 +270,15 @@
           In writing this platform abstraction API, I took a different approach to many other operating system
           abstraction libraries. Instead of providing an interface to all the common functionality, <em>Octotablet</em>
           aims to provide access to the full capabilities of each platform - providing low level details to programs
-          that benifit from the extra data while still providing a uniform interface for users who just need an easy
-          way to access stylus motion events.
+          that benefit from the extra data while still providing a uniform interface for users who just need an easy
+          way to access stylus motion events across operating systems and device manufacturers.
         </p>
       </section>
 
       <section class="columnify">
         <h3>Holonomy <time datetime="2022-7-17">July 2022</time></h3>
         <div class="vinfo-box">
-          <a class="project-link" href="https://fuzzyzilla.itch.io/holonomy">
+          <a class="project-link" href="https://fuzzyzilla.itch.io/holonomy" aria-label="Play on itch.io">
             <figure>
               <img src="/img/holonomy.webp" alt="Holonomy cover art">
               <figcaption><span>Play on itch.io</span></figcaption>
@@ -282,20 +297,24 @@
           </div>
         </div>
         <p>
-          Made in 48 hours for the GMTK Game Jam, my platformer achieved 2nd place
-          among over 6,000 competing game jam entries. This game demonstrates novel
-          graphics techniques, allowing the 2D player character to navigate on the surface
-          of a 3D world. Custom physics logic allows the 2D physics of the player to
+          Made in 48 hours for the <a href="https://itch.io/jam/gmtk-jam-2022/results"><em>GMTK Game Jam</em></a>, my
+          puzzle platformer game achieved 2nd place among over 6,000 competing game jam entries. This game demonstrates
+          novel graphics techniques, allowing the 2D player character to navigate on the surface
+          of a cubic world. Custom physics logic allows the 2D physics of the player to
           interact seamlessly with the geometry of the 3D environment. The game
-          features a striking visual style, implemented via custom material and post-
-          processing shaders.
+          features a striking visual style, implemented via custom material and post-processing shaders.
+        </p>
+        <p>
+          With great inspiration from the Linear Algebra course I was taking at the same time,
+          achieving this game's main effect of a 2D character on a 3D surface was a captivating
+          challenge that required some esoteric problem solving!
         </p>
       </section>
 
       <section class="columnify">
         <h3>Other itch.io Games</h3>
         <div class="vinfo-box">
-          <a class="project-link" href="https://fuzzyzilla.itch.io/">
+          <a class="project-link" href="https://fuzzyzilla.itch.io/" aria-label="View on itch.io">
             <figure>
               <img src="img/layout.webp" alt="Collage of various game covers">
               <figcaption><span>View on itch.io</span></figcaption>
@@ -313,7 +332,7 @@
         </div>
         <p>
           I have taken part in many online game jams, each project using the time-limited
-          opportinuty to explore a new aspect of game development. From platformers with
+          opportunity to explore a new aspect of game development. From platformers with
           portals to UI based strategy, digital art to sound design, these sprints have
           helped me expand my abilities as a designer and developer.
         </p>
@@ -322,10 +341,10 @@
       <section class="columnify">
         <h3>This site! <time datetime="2024-06">June 2024</time></h3>
         <div class="vinfo-box">
-          <a class="project-link" href="https://github.com/Fuzzyzilla/portfolio">
+          <a class="project-link" href="https://github.com/Fuzzyzilla/portfolio" aria-label="View on Github">
             <figure>
               <img src="img/sheep.svg" alt="Sheep icon" width="100px">
-              <figcaption><em>Baa!</em></figcaption>
+              <figcaption><em>View on Github</em></figcaption>
             </figure>
           </a>
           <div class="vstats">
@@ -340,8 +359,8 @@
               <li>WebGL 2</li>
             </ul>
             <ul class="skills">
-              <li>Responsive Layout</li>
               <li>Semantic HTML</li>
+              <li>Responsive CSS</li>
               <li>Page Weight Optimization</li>
               <li>Cross-device Testing</li>
             </ul>
@@ -350,7 +369,7 @@
         <p>
           With HTML and CSS written by hand with helper scripts compiled with npm, this page represents
           many of my goals in software development. Thanks to an obsessive attention to
-          memory footprint and performance without compromising form, function, nor acccessibility,
+          memory footprint and performance without compromising form, function, nor accessibility,
           this page - scripts, styles, images and all - is under 150kB transferred. This is much smaller than
           <a href="https://httparchive.org/reports/page-weight#bytesTotal">
             the 2610kB median as reported by HTTP Archive
