@@ -18,7 +18,7 @@ js-sys = "0.3.64"
 bytemuck = { version = "1.13.1", features = ["derive"] }
 
 [dependencies.web-sys]
-version = "0.3.64"
+version = "0.3.70"
 features = [
     'WebGlBuffer',
     'WebGlVertexArrayObject',
