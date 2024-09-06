@@ -82,9 +82,9 @@ dependencies = [
 
 [[package]]
 name = "obj-rs"
-version = "0.7.1"
+version = "0.7.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a502182538a65adc7e3843f820eb5a4bd3ff395017e0ba6e3ccad404e9ea1da3"
+checksum = "a9d38d5eb90bef5bfff1f6ed24018460588489652b7a8937b7d9b57b4db5cf73"
 dependencies = [
  "num-traits",
  "serde",
