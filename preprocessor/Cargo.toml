@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-anyhow = "1.0.75"
+anyhow = "1.0.89"
 bytemuck = "1.13.1"
 obj-rs = "0.7.1"
 tinyvec = "1.6.0"
